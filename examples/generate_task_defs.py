@@ -1,3 +1,4 @@
+#%%
 import numpy as np
 import torch
 import random
@@ -7,6 +8,7 @@ import pathlib
 from tqdm import tqdm
 from implicit_maml.dataset import OmniglotTask, OmniglotFewShotDataset
 
+#%%
 np.random.seed(123)
 torch.manual_seed(123)
 random.seed(123)
@@ -33,3 +35,5 @@ print("Saving task defs ......")
 pathlib.Path(args.save_dir).mkdir(parents=True, exist_ok=True)
 save_file = args.save_dir + '/' + args.task + '_' + str(args.N_way) + '_way_' + str(args.K_shot) + '_shot.pickle'
 pickle.dump(task_defs, open(save_file, 'wb'))
+
+# %%

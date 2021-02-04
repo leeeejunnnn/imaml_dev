@@ -6,7 +6,7 @@
 - Each task is a dict with the following keys: x_train, y_train, x_val, y_val, x_all, y_all
   x_all and y_all are simply concatenations of train and val
 """
-
+#%%
 import os
 import random
 import numpy as np
@@ -20,8 +20,8 @@ from torchvision import transforms
 from PIL import Image
 from scipy.ndimage import rotate
 
-DATA_DIR = '/home/aravind/data/omniglot-py/'
-
+DATA_DIR = '/home/sss-linux1/project/leejun/imaml_dev/data/omniglot'
+#%%
 class SinusoidDataset(Dataset):
     def __init__(self, num_tasks=100, train_inst=10, val_inst=10, GPU=False, float16=False):
         """
@@ -141,7 +141,7 @@ class OmniglotTask(object):
         self.val_ids = []
         for c in classes:
             # First get all isntances of that class
-            temp = [os.path.join(c, x) for x in os.listdir(c)]
+            temp = [os.path.join(c, x.decode('UTF-8')) for x in os.listdir(c)]
             instances[c] = random.sample(temp, len(temp))
             # Sample num_inst instances randomly each for train and val
             self.train_ids += instances[c][:num_inst]
@@ -244,3 +244,4 @@ class OmniglotFewShotDataset(Dataset):
 
     
 # TODO(Aravind): Add mini-imagenet to this version of code
+# %%
